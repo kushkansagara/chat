@@ -1,6 +1,5 @@
-import logo from "./logo.svg";
-import "./App.css";
-import { BrowserRouter, HashRouter, Routes, Route } from "react-router-dom";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -37,10 +36,7 @@ function App() {
         setNewMessages,
       }}
     >
-      {/* Use either BrowserRouter or HashRouter */}
       <BrowserRouter basename="/">
-        {/* Uncomment the line below and comment the one above to use HashRouter */}
-        {/* <HashRouter basename="/"> */}
         <Navigation />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -53,8 +49,6 @@ function App() {
           <Route path="/chat" element={<Chat />} />
         </Routes>
       </BrowserRouter>
-      {/* Uncomment the line below if using HashRouter */}
-      {/* </HashRouter> */}
     </AppContext.Provider>
   );
 }
