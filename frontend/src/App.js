@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, HashRouter, Routes, Route } from "react-router-dom";
 import Navigation from "./components/Navigation";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -18,6 +18,7 @@ function App() {
   const [privateMemberMsg, setPrivateMemberMsg] = useState({});
   const [newMessages, setNewMessages] = useState({});
   const user = useSelector((state) => state.user);
+
   return (
     <AppContext.Provider
       value={{
@@ -36,7 +37,10 @@ function App() {
         setNewMessages,
       }}
     >
-      <BrowserRouter>
+      {/* Use either BrowserRouter or HashRouter */}
+      <BrowserRouter basename="/">
+        {/* Uncomment the line below and comment the one above to use HashRouter */}
+        {/* <HashRouter basename="/"> */}
         <Navigation />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -49,6 +53,8 @@ function App() {
           <Route path="/chat" element={<Chat />} />
         </Routes>
       </BrowserRouter>
+      {/* Uncomment the line below if using HashRouter */}
+      {/* </HashRouter> */}
     </AppContext.Provider>
   );
 }
